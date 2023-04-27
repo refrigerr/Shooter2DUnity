@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8282381d71437a649a118d194927b83b, type: 3}
+  m_Name: Assult Rifle
+  m_EditorClassIdentifier: 
+  name: Assult Rifle
+  damage: 15
+  bullet: {fileID: 3363194229335392006, guid: 232cdc65917a72045a9ab81e58dc8347, type: 3}
+  bulletSpeed: 1200
+  bulletAliveInSeconds: 1.2
+  currentAmmo: 21
+  magSize: 30
+  fireRate: 800
+  reloadTime: 0.2
+  reloading: 0
