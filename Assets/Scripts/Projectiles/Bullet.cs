@@ -14,8 +14,11 @@ public class Bullet : Projectile
     {
             
     }
-    private void OnCollisionEnter2D(Collision2D collision2D){
+    private void OnCollisionEnter2D(Collision2D collision2D)
+    {
         if(_fromPlayer && collision2D.gameObject.CompareTag("Player"))
+            return;
+        if(collision2D.gameObject.GetComponent<Projectile>() != null)
             return;
         IDamageable damageable = collision2D.gameObject.GetComponent<IDamageable>();
         damageable?.takeDamage(_damage);

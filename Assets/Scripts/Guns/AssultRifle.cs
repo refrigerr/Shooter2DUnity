@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AssultRifle : AGun
 {
-    public override void Shoot(bool shootRight){
+    public override void Shoot(bool shootRight)
+    {
         if (CanShoot())
         {
             GameObject bullet = Instantiate(_gunData.bullet, _muzzle.position, _muzzle.rotation);
@@ -21,16 +22,25 @@ public class AssultRifle : AGun
          
         } 
     }
-    public override void UpdateReloadingProgress(){
+    public override void UpdateReloadingProgress()
+    {
         //increases time that passed
         _reloadTimeProgress += Time.deltaTime;
         //if time that passed is greater than reload time, perform reload
-        if(_reloadTimeProgress > _gunData.reloadTime){
-            _gunData.currentAmmo = _gunData.magSize;
-            FinishReloading();
+        if(_reloadTimeProgress >= _gunData.reloadTime){
+            if(_ammunitionManager.GetAmmoValue(_ammoTypeGunUses) >= _gunData.magSize - _gunData.currentAmmo){
+                _ammunitionManager.ChangeAmmoValue(_ammoTypeGunUses, -(_gunData.magSize - _gunData.currentAmmo));
+                _gunData.currentAmmo = _gunData.magSize;
+            }else{
+                _gunData.currentAmmo += _ammunitionManager.GetAmmoValue(_ammoTypeGunUses);
+                _ammunitionManager.ChangeAmmoValue(_ammoTypeGunUses, -_ammunitionManager.GetAmmoValue(_ammoTypeGunUses));
+            }
+            
+            InterruptReloading();
         }
     }
-    private void Update(){
+    private void Update()
+    {
         //update time since last shot
         _timeSinceLastShot += Time.deltaTime; 
 

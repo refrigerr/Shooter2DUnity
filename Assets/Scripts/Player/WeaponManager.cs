@@ -4,64 +4,65 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public byte _weaponsUnlocked = 3;
-    public int _currentWeaponIndex = 0;
-    public GameObject[] _weapons;
-    [SerializeField] public GameObject _weaponHolder;
-    public GameObject _currentWeapon;
+    public int _weaponsUnlocked = 0;
+    public int currentWeaponIndex = 0;
+    public GameObject[] weapons;
+    [SerializeField] public GameObject weaponHolder;
+    [SerializeField] public UIAmmunitionDisplay UIAmmunitionDisplay;
+    [SerializeField] public UIWeaponDisplay UIWeaponDisplay;
+    public GameObject currentWeapon;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        _weapons = new GameObject[_weaponHolder.transform.childCount-1];
-        for(int i=0; i<_weapons.Length;i++){
-            _weapons[i] = _weaponHolder.transform.GetChild(i+1).gameObject;
-            Debug.Log(_weapons[i].name);
-            _weapons[i].SetActive(false);
+        weapons = new GameObject[weaponHolder.transform.childCount-1];
+        for(int i=0; i<weapons.Length;i++){
+            weapons[i] = weaponHolder.transform.GetChild(i+1).gameObject;
+            weapons[i].SetActive(false);
+
         }
-        _weapons[0].SetActive(true);
-        _currentWeapon = _weapons[0];
-        _currentWeaponIndex = 0;
+        weapons[0].SetActive(true);
+        currentWeapon = weapons[0];
+        currentWeaponIndex = 0;
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        SwitchingWeapons();
-        
+        SwitchingWeapons(); 
     }
 
     private void SwitchingWeapons(){
-        if(Input.GetKeyDown(KeyCode.Alpha1) && _currentWeaponIndex!=0){
+        if(Input.GetKeyDown(KeyCode.Alpha1) && currentWeaponIndex!=0 && ((_weaponsUnlocked & 1) != 0)){
             SetWeaponActive(0);
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2) && _currentWeaponIndex!=1){
+        if(Input.GetKeyDown(KeyCode.Alpha2) && currentWeaponIndex!=1 && ((_weaponsUnlocked & 2) != 0) ){
             SetWeaponActive(1);
         }
-        /*
-        if(Input.GetKeyDown(KeyCode.Keypad3) && _currentWeaponIndex!=0){
-            _weapons[_currentWeaponIndex].SetActive(false);
-            _currentWeaponIndex = 0;
-            _weapons[_currentWeaponIndex].SetActive(true);
+        if(Input.GetKeyDown(KeyCode.Alpha3) && currentWeaponIndex!=2 && ((_weaponsUnlocked & 4) != 0)){
+            SetWeaponActive(2);
         }
-        if(Input.GetKeyDown(KeyCode.Keypad4) && _currentWeaponIndex!=0){
-            _weapons[_currentWeaponIndex].SetActive(false);
-            _currentWeaponIndex = 0;
-            _weapons[_currentWeaponIndex].SetActive(true);
+        if(Input.GetKeyDown(KeyCode.Alpha4) && currentWeaponIndex!=3 && ((_weaponsUnlocked & 8) != 0)){
+            SetWeaponActive(3);
         }
-        if(Input.GetKeyDown(KeyCode.Keypad5) && _currentWeaponIndex!=0){
-            _weapons[_currentWeaponIndex].SetActive(false);
-            _currentWeaponIndex = 0;
-            _weapons[_currentWeaponIndex].SetActive(true);
-        }
-        */
+    }
+
+    public void UnlockWeapon(int index){
+        int a = 1 << index;
+        _weaponsUnlocked = _weaponsUnlocked | a;
+
     }
 
     private void SetWeaponActive(int index){
-        _weapons[_currentWeaponIndex].GetComponent<AGun>().FinishReloading();
-        _weapons[_currentWeaponIndex].SetActive(false);
-        _currentWeaponIndex = index;
-        _weapons[_currentWeaponIndex].SetActive(true);
-        _currentWeapon = _weapons[_currentWeaponIndex];
+        weapons[currentWeaponIndex].GetComponent<AGun>().InterruptReloading();
+        weapons[currentWeaponIndex].SetActive(false);
+        currentWeaponIndex = index;
+        weapons[currentWeaponIndex].SetActive(true);
+        currentWeapon = weapons[currentWeaponIndex];
+
+        //UI update
+        UIAmmunitionDisplay.UpdateWeapon();
+        UIWeaponDisplay.ChangeHighLightPosition(currentWeaponIndex);
     }
 
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Pistol : AGun
 {
     private bool _shot;
-    public override void Shoot(bool shootRight){
+    public override void Shoot(bool shootRight)
+    {
         if (CanShoot())
         {
             if(_shot)
@@ -25,24 +26,10 @@ public class Pistol : AGun
         } 
     }
     public override void UpdateReloadingProgress(){
-        //increases time that passed
-        _reloadTimeProgress += Time.deltaTime;
-        //if time that passed is greater than reload time, perform reload
-        if(_reloadTimeProgress > _gunData.reloadTime){
-            _gunData.currentAmmo = _gunData.magSize;
-            FinishReloading();
-            
-            /*
-      
-            gunData.currentAmmo += 1;
-            _reloadTimeProgress = 0;
-            if(gunData.currentAmmo == gunData.magSize)
-                FinishReloading();
-        
-            */
-        }
+
     }
-    private void Update(){
+    private void Update()
+    {
         //update time since last shot
         _timeSinceLastShot += Time.deltaTime;
 
@@ -50,10 +37,9 @@ public class Pistol : AGun
         if(_shot && !Input.GetMouseButton(0))
             _shot = false; 
 
-
         //updates if gun is being reloaded
         if(_gunData.reloading){
-            UpdateReloadingProgress();
+            _gunData.reloading = false;
         }
     }
 }
