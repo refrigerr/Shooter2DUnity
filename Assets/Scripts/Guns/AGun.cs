@@ -10,7 +10,7 @@ public abstract class AGun : MonoBehaviour
     [SerializeField] protected int _ammoTypeGunUses;
     protected AmmunitionManager _ammunitionManager;
     protected float _timeSinceLastShot;
-    protected float _reloadTimeProgress;
+    public float _reloadTimeProgress;
     void Awake()
     {
         _ammunitionManager = GameObject.Find("Player").GetComponent<AmmunitionManager>();

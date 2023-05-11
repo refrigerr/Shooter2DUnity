@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerRB.velocity = new Vector2(_playerRB.velocity.x, _jumpForce);
         _animator.SetTrigger("Jump");
-        GetComponent<PlayerHealthManager>().takeDamage(1);
     
     }
 
@@ -56,22 +55,30 @@ public class PlayerMovement : MonoBehaviour
         return _facesRight;
     }
     private void FilpPlayer(){
-        if(_playerRB.velocity.x > 0f){
-            transform.localScale = new Vector3(1.2f, 1.2f ,1);
-            _facesRight = true;
+        if(_playerRB.velocity.x > 0f && !_facesRight){
+            Flip();
         }
-        else if(_playerRB.velocity.x < 0f){
-            transform.localScale = new Vector3(-1.2f, 1.2f ,1);
-            _facesRight = false;
-        }else if (_playerRB.velocity.x == 0){
-
-            if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x>=_playerRB.transform.position.x){
-                transform.localScale = new Vector3(1.2f, 1.2f ,1);
-                _facesRight = true;
-            }else{
-                transform.localScale = new Vector3(-1.2f, 1.2f ,1);
-                _facesRight = false;
+        else if(_playerRB.velocity.x < 0f && _facesRight)
+        {
+            Flip();
+        }
+        else if (_playerRB.velocity.x == 0)
+        {
+            if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x >= _playerRB.transform.position.x && !_facesRight)
+            {
+                Flip();
+            }
+            else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < _playerRB.transform.position.x && _facesRight)
+            {
+                Flip();
             }
         }
+    }
+
+    private void Flip(){
+        Vector3 currentScale = this.transform.localScale;
+        currentScale.x *= -1;
+        this.transform.localScale = currentScale;
+        _facesRight = !_facesRight;
     }
 }

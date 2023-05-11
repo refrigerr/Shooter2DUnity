@@ -17,7 +17,6 @@ public class AmmunitionManager : MonoBehaviour
     public void ChangeAmmoValue(int index, int amount)
     {
         _ammunitionStorage[index] += amount;
-        Debug.Log(_ammunitionStorage[index]);
     }
     public int GetAmmoValue(int index)
     {

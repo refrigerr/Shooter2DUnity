@@ -13,9 +13,9 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     public void takeDamage(int damage){
         if(_damaged)
             return;
-        _health -= 1;
+        ChangeHealth(-damage);
         _damaged = true;
-        _UIhealthDisplay.setHealth(_health);
+        
     }
 
     void Start()
@@ -37,5 +37,9 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     }
     public int getHealth(){
         return _health;
+    }
+    public void ChangeHealth(int value){
+        _health += value;
+        _UIhealthDisplay.setHealth(_health);
     }
 }

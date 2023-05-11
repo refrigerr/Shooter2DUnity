@@ -31,6 +31,7 @@ public class PlayerShoot : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)){
             AGun gun = _weaponManager.currentWeapon.GetComponent<AGun>();
             gun.StartReloading();
+            _weaponManager.SetReloadProgressActive();
         }
 
     }
