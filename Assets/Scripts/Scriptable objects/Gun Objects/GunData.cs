@@ -12,6 +12,7 @@ public class GunData : ScriptableObject
     public GameObject bullet;
     public float bulletSpeed;
     public float bulletAliveInSeconds;
+    public AmmunitionManager.AmmunitionType ammoType;
  
     [Header("Reloading")]
     public int currentAmmo;

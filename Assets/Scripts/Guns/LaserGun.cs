@@ -5,24 +5,17 @@ using UnityEngine;
 public class LaserGun : AGun
 {
     [SerializeField] private float _chargeTime;
-    [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private float _chargeProgress;
+    [SerializeField] private GameObject _laser;
+
     public override void Shoot(bool shootRight){
         if (CanShoot())
         {
- 
-
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, transform.right);
-            _lineRenderer.SetPosition(0, _muzzle.position);
-            if(hit2D && hit2D.transform.gameObject.CompareTag("Obstacle")){
-                _lineRenderer.useWorldSpace = true;
-                _lineRenderer.SetPosition(1, hit2D.point);
-            }
-            else{
-                //_lineRenderer.useWorldSpace = false;
-                _lineRenderer.SetPosition(1, Camera.main.ScreenToWorldPoint(_muzzle.transform.right * 2)); 
-            }
-                     
+            Vector3 rotation = _muzzle.rotation.eulerAngles;
+            if(!shootRight)
+                rotation.z += 180;
+            GameObject laser = Instantiate(_laser,_muzzle.position,Quaternion.Euler(rotation));
+            _chargeProgress = 0;
         }
         else if(!_gunData.reloading && _gunData.currentAmmo > 0){
             _chargeProgress += Time.deltaTime;
@@ -42,13 +35,16 @@ public class LaserGun : AGun
         //update time since last shot
         _timeSinceLastShot += Time.deltaTime;
 
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0)){
             _chargeProgress = 0;
+        }
             
         //updates if gun is being reloaded
         if(_gunData.reloading){
             UpdateReloadingProgress();
         }
+
+       
     }
 
     public override bool CanShoot(){

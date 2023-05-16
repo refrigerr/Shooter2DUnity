@@ -17,7 +17,7 @@ public class Pistol : AGun
             else
                 bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * (-_gunData.bulletSpeed));
 
-            bullet.GetComponent<Projectile>().setDamage(_gunData.damage);
+            bullet.GetComponent<Projectile>().setVariables(_gunData.damage, true, _gunData.ammoType);
 
             Destroy(bullet, _gunData.bulletAliveInSeconds);
             

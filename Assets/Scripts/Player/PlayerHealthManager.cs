@@ -10,11 +10,12 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     [SerializeField] private float _invincibilityDuration;
     [SerializeField] private UIHealthDisplay _UIhealthDisplay;
     private bool _damaged;
-    public void takeDamage(int damage){
+    public void takeDamage(int damage, AmmunitionManager.AmmunitionType cos = AmmunitionManager.AmmunitionType.PistolAmmo){
         if(_damaged)
             return;
-        ChangeHealth(-damage);
+        _health--;
         _damaged = true;
+        _UIhealthDisplay.SetHealth(_health);
         
     }
 
@@ -38,8 +39,5 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     public int getHealth(){
         return _health;
     }
-    public void ChangeHealth(int value){
-        _health += value;
-        _UIhealthDisplay.setHealth(_health);
-    }
+    
 }

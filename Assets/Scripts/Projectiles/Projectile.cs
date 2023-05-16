@@ -6,11 +6,12 @@ public abstract class Projectile : MonoBehaviour
 {
     protected int _damage;
     protected bool _fromPlayer = true;
+    protected AmmunitionManager.AmmunitionType _ammoType;
 
-    public void setDamage(int damage){
+    public void setVariables(int damage, bool fromPlayer, AmmunitionManager.AmmunitionType ammoType){
         this._damage = damage;
+        this._fromPlayer = fromPlayer;
+        this._ammoType = ammoType;
     }
-    public void setFromPlayer(bool fromPlayer){
-        _fromPlayer = fromPlayer;
-    }
+
 }

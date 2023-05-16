@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public void takeDamage(int damage);
+    
+    public void takeDamage(int damage, AmmunitionManager.AmmunitionType ammunitionType);
     
 }

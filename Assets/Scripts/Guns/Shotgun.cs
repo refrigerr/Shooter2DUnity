@@ -21,7 +21,7 @@ public class Shotgun : AGun
                 else
                     bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * (-_gunData.bulletSpeed));
 
-                bullet.GetComponent<Projectile>().setDamage(_gunData.damage);
+                bullet.GetComponent<Projectile>().setVariables(_gunData.damage, true, _gunData.ammoType);
                 Destroy(bullet, _gunData.bulletAliveInSeconds);
             }
 
@@ -37,8 +37,8 @@ public class Shotgun : AGun
         _reloadTimeProgress += Time.deltaTime;
         //if time that passed is greater than reload time, perform reload
         if(_reloadTimeProgress > _gunData.reloadTime){
-            if(_ammunitionManager.GetAmmoValue(_ammoTypeGunUses) > 0){
-                _ammunitionManager.ChangeAmmoValue(_ammoTypeGunUses, -1);
+            if(_ammunitionManager.GetAmmoValue((int)_gunData.ammoType) > 0){
+                _ammunitionManager.ChangeAmmoValue((int)_gunData.ammoType, -1);
                 _gunData.currentAmmo++;
             }else
                 InterruptReloading();

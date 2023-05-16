@@ -6,8 +6,6 @@ public abstract class AGun : MonoBehaviour
 {
     [SerializeField] public GunData _gunData;
     [SerializeField] protected Transform _muzzle;
-    [SerializeField] public Sprite ammoTypeSprite;
-    [SerializeField] protected int _ammoTypeGunUses;
     protected AmmunitionManager _ammunitionManager;
     protected float _timeSinceLastShot;
     public float _reloadTimeProgress;
@@ -28,7 +26,7 @@ public abstract class AGun : MonoBehaviour
 
     public void StartReloading()
     {
-         if(!_gunData.reloading && _gunData.currentAmmo < _gunData.magSize && _ammunitionManager.GetAmmoValue(_ammoTypeGunUses) > 0)
+         if(!_gunData.reloading && _gunData.currentAmmo < _gunData.magSize && _ammunitionManager.GetAmmoValue((int)_gunData.ammoType) > 0)
             _gunData.reloading = true;
     }
     
@@ -37,8 +35,9 @@ public abstract class AGun : MonoBehaviour
         _gunData.reloading=false;
         _reloadTimeProgress=0;
     }
-    public int GetAmmoTypeUsedByGun(){
-        return _ammoTypeGunUses;
+    public AmmunitionManager.AmmunitionType GetAmmoType(){
+        return _gunData.ammoType;
     }
+    
   
 }

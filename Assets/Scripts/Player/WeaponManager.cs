@@ -29,7 +29,7 @@ public class WeaponManager : MonoBehaviour
         weapons[0].SetActive(true);
         currentWeapon = weapons[0];
         currentWeaponIndex = 0;
-        weaponsUnlocked = 1;
+        weaponsUnlocked = 63;
 
         _realoadProgress.gameObject.SetActive(false);
     }
@@ -55,6 +55,14 @@ public class WeaponManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha4) && currentWeaponIndex!=3 && ((weaponsUnlocked & 8) != 0)){
             SetWeaponActive(3);
         }
+        if(Input.GetKeyDown(KeyCode.Alpha5) && currentWeaponIndex!=4 && ((weaponsUnlocked & 16) != 0)){
+            SetWeaponActive(4);
+        }
+        
+        if(Input.GetKeyDown(KeyCode.Alpha6) && currentWeaponIndex!=5 && ((weaponsUnlocked & 32) != 0)){
+            SetWeaponActive(5);
+        }
+        
     }
     private void ShowReloadProgress(){
          if(currentWeapon.GetComponent<AGun>()._gunData.reloading){

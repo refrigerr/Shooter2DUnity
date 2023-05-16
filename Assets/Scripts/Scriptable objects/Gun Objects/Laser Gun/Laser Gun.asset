@@ -16,7 +16,8 @@ MonoBehaviour:
   damage: 4
   bullet: {fileID: 3363194229335392006, guid: 232cdc65917a72045a9ab81e58dc8347, type: 3}
   bulletSpeed: 500
-  bulletAliveInSeconds: 0
+  bulletAliveInSeconds: 1
+  ammoType: 5
   currentAmmo: 2569
   magSize: 100
   fireRate: 2000

@@ -102,10 +102,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _damageText: {fileID: 1020794525343245414, guid: c4caa4215b7e7114884f3db7f4a0b8d5, type: 3}
+  _ammoWeakTo: 
+  _ammoResistantTo: 
   _possibleEntitiesToDrop:
   - {fileID: 904208808358683271, guid: bdf3ac48c7efe544eb6f7e0e4398a903, type: 3}
   - {fileID: 3374311911523128112, guid: d31583a9dfd000e4db4eb7a2f9b5fe87, type: 3}
   - {fileID: 1433765758168986501, guid: 69a47e19b306af3478c9aa0f4d1744f7, type: 3}
+  - {fileID: 8431964029536480691, guid: 6d9f8ff2329bb18459034523cc1761e1, type: 3}
+  - {fileID: 4178800255549982421, guid: 1c14c6a3bb0c56e4ab6f9ecdf9fd3829, type: 3}
 --- !u!61 &5503500509091858740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,10 +148,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 500
+  m_Mass: 400
   m_LinearDrag: 4
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

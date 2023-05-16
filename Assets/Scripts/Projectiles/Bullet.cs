@@ -21,7 +21,7 @@ public class Bullet : Projectile
         if(collision2D.gameObject.GetComponent<Projectile>() != null)
             return;
         IDamageable damageable = collision2D.gameObject.GetComponent<IDamageable>();
-        damageable?.takeDamage(_damage);
+        damageable?.takeDamage(_damage, this._ammoType);
         Destroy(gameObject);
     }
 }

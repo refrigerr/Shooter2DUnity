@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class UIAmmunitionDisplay : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class UIAmmunitionDisplay : MonoBehaviour
     [SerializeField] private Text _currentAmmoText;
     [SerializeField] private Text _magSizeText;
     [SerializeField] private Text _ammoInStorageText;
+    [SerializeField] private  Sprite[] _ammunitionSprites;
     private WeaponManager _weaponManager;
     private AmmunitionManager _ammunitionManager;
     // Start is called before the first frame update
     void Awake()
     {
+    
         _ammunitionManager = GameObject.Find("Player").GetComponent<AmmunitionManager>();
         _weaponManager = GameObject.Find("Player").GetComponent<WeaponManager>();
         UpdateWeapon();
@@ -29,12 +32,12 @@ public class UIAmmunitionDisplay : MonoBehaviour
             
         }else{
             _currentAmmoText.text = _weaponManager.currentWeapon.GetComponent<AGun>()._gunData.currentAmmo.ToString(); 
-            _ammoInStorageText.text ="("+ _ammunitionManager.GetAmmoValue(_weaponManager.currentWeapon.GetComponent<AGun>().GetAmmoTypeUsedByGun()).ToString()+ ")";  
+            _ammoInStorageText.text ="("+ _ammunitionManager.GetAmmoValue((int)_weaponManager.currentWeapon.GetComponent<AGun>().GetAmmoType()).ToString()+ ")";  
         }
     }
 
     public void UpdateWeapon(){
-        _ammunitionSprite.GetComponent<Image>().sprite = _weaponManager.currentWeapon.GetComponent<AGun>().ammoTypeSprite;
+        _ammunitionSprite.GetComponent<Image>().sprite = _ammunitionSprites[(int)_weaponManager.currentWeapon.GetComponent<AGun>()._gunData.ammoType];
         if(_weaponManager.currentWeaponIndex==0){
             _magSizeText.text = "∞";
             
@@ -43,4 +46,5 @@ public class UIAmmunitionDisplay : MonoBehaviour
             
         }
     }
+
 }

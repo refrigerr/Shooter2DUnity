@@ -9,11 +9,11 @@ public class UIHealthDisplay : MonoBehaviour
     private PlayerHealthManager _playerHealthManager;
     void Awake()
     {
-        setHealth(GameObject.Find("Player").GetComponent<PlayerHealthManager>().getHealth());
+        SetHealth(GameObject.Find("Player").GetComponent<PlayerHealthManager>().getHealth());
 
     }
 
-    public void setHealth(int health){
+    public void SetHealth(int health){
         _currentHP.text = "x"+ health;
     }
 }

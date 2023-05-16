@@ -17,8 +17,9 @@ MonoBehaviour:
   bullet: {fileID: 3363194229335392006, guid: 232cdc65917a72045a9ab81e58dc8347, type: 3}
   bulletSpeed: 2000
   bulletAliveInSeconds: 2
-  currentAmmo: 2
+  ammoType: 3
+  currentAmmo: 1
   magSize: 5
   fireRate: 50
   reloadTime: 3
-  reloading: 1
+  reloading: 0
