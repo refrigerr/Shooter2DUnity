@@ -22,15 +22,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update(){
 
+        if(Input.GetButtonDown("Jump") && isGrounded()){
+            Jump();
+        }
+
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         _playerRB.velocity = new Vector2(horizontalInput * _speed, _playerRB.velocity.y);
       
         //flips player when moving left/right
         FilpPlayer();
 
-        if(Input.GetButtonDown("Jump") && isGrounded()){
-            Jump();
-        }
+        
 
         //set animator parameter
         _animator.SetBool("Run", horizontalInput != 0);

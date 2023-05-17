@@ -8,7 +8,7 @@ public class Laser : Projectile
     [SerializeField] private BoxCollider2D _boxCollider2D;
     private Collider2D[] _colliders2D;
     private float _alpha;
-    private bool _didDamage;
+    private int _framesActive;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,16 +18,13 @@ public class Laser : Projectile
     }
     void Start (){
         _alpha = 1;
-        _didDamage = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if(_alpha<1 && !_didDamage)
-            _didDamage = true;
-            
+        
+  
         //fading laser
         _alpha-=Time.deltaTime;
         Color color = new Color(1f,1f,1f,_alpha);
@@ -35,33 +32,26 @@ public class Laser : Projectile
         _lineRenderer.endColor=color;
 
         if(_alpha<=0){
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
-
-        OnTriggerEnter2D(_boxCollider2D);
-        _didDamage = true;
+        if(_framesActive<=15)
+            _framesActive++;
         
     }
     
 
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if(_didDamage)
+        if(_framesActive>15)
             return;
 
         if(_fromPlayer && collider2D.gameObject.CompareTag("Player"))
             return;
+
         if(collider2D.gameObject.GetComponent<Projectile>() != null)
             return;
         
         IDamageable damageable = collider2D.gameObject.GetComponent<IDamageable>();
         damageable?.takeDamage(_damage, this._ammoType);
-    }
-
-    void OnDrawGizmosSelected(){
-        Gizmos.color = Color.black;
-        Gizmos.DrawWireCube(new Vector2(_boxCollider2D.bounds.center.x,_boxCollider2D.bounds.center.y), new Vector2(_boxCollider2D.bounds.size.x,_boxCollider2D.bounds.size.y));
-        //Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
-
     }
 }

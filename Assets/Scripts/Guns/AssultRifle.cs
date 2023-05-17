@@ -8,16 +8,20 @@ public class AssultRifle : AGun
     {
         if (CanShoot())
         {
-            GameObject bullet = Instantiate(_gunData.bullet, _muzzle.position, _muzzle.rotation);
-            if(shootRight)
-                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * _gunData.bulletSpeed);
-            else
-                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * (-_gunData.bulletSpeed));
-            bullet.GetComponent<Projectile>().setVariables(_gunData.damage, true, _gunData.ammoType);
+            Vector3 rotation = _muzzle.rotation.eulerAngles;
+            if(!shootRight)
+                rotation.z += 180;
 
-            Destroy(bullet, _gunData.bulletAliveInSeconds);
+            GameObject projectile = Instantiate(_gunData.projectile, _muzzle.position, Quaternion.Euler(rotation));
+
+            if(projectile.GetComponent<Rigidbody2D>())
+                projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * _gunData.projectileSpeed);
+
+            projectile.GetComponent<Projectile>().SetVariables(_gunData.damage, true, _gunData.ammoType);
+
+            Destroy(projectile, _gunData.projectileAliveInSeconds);
             
-            _gunData.currentAmmo--;
+            _gunData.currentAmmo -= _gunData.ammoPerShot;
             _timeSinceLastShot = 0;
          
         } 

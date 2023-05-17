@@ -8,7 +8,7 @@ public abstract class Projectile : MonoBehaviour
     protected bool _fromPlayer = true;
     protected AmmunitionManager.AmmunitionType _ammoType;
 
-    public void setVariables(int damage, bool fromPlayer, AmmunitionManager.AmmunitionType ammoType){
+    public void SetVariables(int damage, bool fromPlayer, AmmunitionManager.AmmunitionType ammoType){
         this._damage = damage;
         this._fromPlayer = fromPlayer;
         this._ammoType = ammoType;

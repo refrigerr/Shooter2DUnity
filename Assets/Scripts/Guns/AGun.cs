@@ -6,12 +6,12 @@ public abstract class AGun : MonoBehaviour
 {
     [SerializeField] public GunData _gunData;
     [SerializeField] protected Transform _muzzle;
-    protected AmmunitionManager _ammunitionManager;
+    [SerializeField] protected AmmunitionManager _ammunitionManager;
     protected float _timeSinceLastShot;
     public float _reloadTimeProgress;
     void Awake()
     {
-        _ammunitionManager = GameObject.Find("Player").GetComponent<AmmunitionManager>();
+        //_ammunitionManager = GameObject.Find("Player").GetComponent<AmmunitionManager>();
     }
     
     public abstract void Shoot(bool shootRight);
@@ -20,13 +20,13 @@ public abstract class AGun : MonoBehaviour
 
     public virtual bool CanShoot()
     {
-         return !_gunData.reloading && _gunData.currentAmmo > 0 && _timeSinceLastShot > 1f / (_gunData.fireRate / 60f);
+         return !_gunData.reloading && _gunData.currentAmmo - _gunData.ammoPerShot >=0 && _timeSinceLastShot > 1f / (_gunData.fireRate / 60f);
     }
     
 
-    public void StartReloading()
+    public virtual void StartReloading()
     {
-         if(!_gunData.reloading && _gunData.currentAmmo < _gunData.magSize && _ammunitionManager.GetAmmoValue((int)_gunData.ammoType) > 0)
+        if(!_gunData.reloading && _gunData.currentAmmo < _gunData.magSize && _ammunitionManager.GetAmmoValue((int)_gunData.ammoType) > 0)
             _gunData.reloading = true;
     }
     

@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shotgun
   damage: 10
-  bullet: {fileID: 3363194229335392006, guid: 232cdc65917a72045a9ab81e58dc8347, type: 3}
-  bulletSpeed: 1000
-  bulletAliveInSeconds: 0.4
+  ammoPerShot: 1
+  projectile: {fileID: 3363194229335392006, guid: 232cdc65917a72045a9ab81e58dc8347, type: 3}
+  projectileSpeed: 1000
+  projectileAliveInSeconds: 0.4
   ammoType: 2
-  currentAmmo: 1
+  currentAmmo: 5
   magSize: 6
   fireRate: 60
   reloadTime: 0.5

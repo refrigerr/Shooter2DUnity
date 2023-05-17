@@ -11,17 +11,21 @@ public class GrenadeLuncher : AGun
         {
             if(_shot)
                 return;
-            GameObject bullet = Instantiate(_gunData.bullet, _muzzle.position, _muzzle.rotation);
-            if(shootRight)
-                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * _gunData.bulletSpeed);
-            else
-                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * (-_gunData.bulletSpeed));
+                
+            Vector3 rotation = _muzzle.rotation.eulerAngles;
+            if(!shootRight)
+                rotation.z += 180;
 
-            bullet.GetComponent<Projectile>().setVariables(_gunData.damage, true, _gunData.ammoType);
+            GameObject projectile = Instantiate(_gunData.projectile, _muzzle.position, Quaternion.Euler(rotation));
 
-            Destroy(bullet, _gunData.bulletAliveInSeconds);
+            if(projectile.GetComponent<Rigidbody2D>())
+                projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * _gunData.projectileSpeed);
 
-            _gunData.currentAmmo--;
+            projectile.GetComponent<Projectile>().SetVariables(_gunData.damage, true, _gunData.ammoType);
+
+            Destroy(projectile, _gunData.projectileAliveInSeconds);
+
+            _gunData.currentAmmo -= _gunData.ammoPerShot;
             _timeSinceLastShot = 0;
             _shot = true;
         } 

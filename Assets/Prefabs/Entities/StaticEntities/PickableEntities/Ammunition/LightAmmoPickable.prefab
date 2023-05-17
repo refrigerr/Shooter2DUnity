@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2262705781592765737}
   - component: {fileID: 904208808358683271}
-  - component: {fileID: 4119440677866144496}
-  m_Layer: 0
+  - component: {fileID: 6407795740614750396}
+  m_Layer: 8
   m_Name: LightAmmoPickable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,11 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200a4adc141b4ea41a97ba47ed816a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
   _ammoType: 1
   _minAmmo: 30
   _maxAmmo: 60
---- !u!58 &4119440677866144496
-CircleCollider2D:
+--- !u!61 &6407795740614750396
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -63,8 +66,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &8233933158288722825
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7194284356160538342}
   - component: {fileID: 1368277171311806787}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

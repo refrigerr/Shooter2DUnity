@@ -26,7 +26,7 @@ public abstract class Button : MonoBehaviour
  
         private void Update()
         {
-            if (_isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+            if (_isPlayerNearby && Input.GetKeyDown(KeyCode.F))
             {
                 PerformAction();
             }

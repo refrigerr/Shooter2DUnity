@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900241982421354962}
   - component: {fileID: 7743138379919394423}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,8 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7417007924776811037}
   - component: {fileID: 8431964029536480691}
-  - component: {fileID: 1788774809522082943}
-  m_Layer: 0
+  - component: {fileID: 7200067362639247701}
+  m_Layer: 8
   m_Name: ExplosiveAmmoPickable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,11 +130,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200a4adc141b4ea41a97ba47ed816a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
   _ammoType: 4
   _minAmmo: 3
   _maxAmmo: 6
---- !u!58 &1788774809522082943
-CircleCollider2D:
+--- !u!61 &7200067362639247701
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,5 +150,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

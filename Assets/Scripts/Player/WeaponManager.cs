@@ -16,10 +16,10 @@ public class WeaponManager : MonoBehaviour
     void Awake()
     {
         _realoadProgress = GetComponentInChildren<CustomSlider>();
-
-        
+    
     }
-    void Start(){
+    void Start()
+    {
         weapons = new GameObject[_weaponHolder.transform.childCount-1];
             for(int i=0; i<weapons.Length;i++){
                 weapons[i] = _weaponHolder.transform.GetChild(i+1).gameObject;
@@ -29,7 +29,7 @@ public class WeaponManager : MonoBehaviour
         weapons[0].SetActive(true);
         currentWeapon = weapons[0];
         currentWeaponIndex = 0;
-        weaponsUnlocked = 63;
+        weaponsUnlocked = 1;
 
         _realoadProgress.gameObject.SetActive(false);
     }
@@ -42,7 +42,11 @@ public class WeaponManager : MonoBehaviour
         ShowReloadProgress();  
     }
 
-    private void SwitchingWeapons(){
+    private void SwitchingWeapons()
+    {
+        
+        
+
         if(Input.GetKeyDown(KeyCode.Alpha1) && currentWeaponIndex!=0 && ((weaponsUnlocked & 1) != 0)){
             SetWeaponActive(0);
         }
@@ -58,13 +62,23 @@ public class WeaponManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha5) && currentWeaponIndex!=4 && ((weaponsUnlocked & 16) != 0)){
             SetWeaponActive(4);
         }
-        
         if(Input.GetKeyDown(KeyCode.Alpha6) && currentWeaponIndex!=5 && ((weaponsUnlocked & 32) != 0)){
             SetWeaponActive(5);
         }
-        
+        if(Input.GetKeyDown(KeyCode.Alpha7) && currentWeaponIndex!=6 && ((weaponsUnlocked & 64) != 0)){
+            SetWeaponActive(6);
+        }
+        if(Input.GetKeyDown(KeyCode.E)){
+            SetWeaponActive(GetNextWeapon(currentWeaponIndex));
+        }
+        if(Input.GetKeyDown(KeyCode.Q)){
+            SetWeaponActive(GetPreviousWeapon(currentWeaponIndex));
+        }
     }
-    private void ShowReloadProgress(){
+
+
+    private void ShowReloadProgress()
+    {
          if(currentWeapon.GetComponent<AGun>()._gunData.reloading){
             _realoadProgress.UpdateHealthBar(currentWeapon.GetComponent<AGun>()._reloadTimeProgress, currentWeapon.GetComponent<AGun>()._gunData.reloadTime);
              _realoadProgress.GetComponent<RectTransform>().localScale = new Vector3(this.transform.localScale.x > 0 ? 1 : -1 ,1 ,1);
@@ -73,17 +87,48 @@ public class WeaponManager : MonoBehaviour
                 _realoadProgress.gameObject.SetActive(false); 
          }
     }
-    public void SetReloadProgressActive(){
+    public void SetReloadProgressActive()
+    {
         _realoadProgress.gameObject.SetActive(true);
     }
 
-    public void UnlockWeapon(int index){
+    private int GetNextWeapon(int index)
+    {
+        if(weaponsUnlocked==0)
+            return 0;
+        int nextIndex = index + 1;
+        if(nextIndex > weapons.Length)
+            return 0;
+        if((weaponsUnlocked & 1 << nextIndex) != 0)
+            return nextIndex;
+        else
+            return GetNextWeapon(nextIndex);
+    }
+
+    private int GetPreviousWeapon(int index)
+    {
+        if(weaponsUnlocked==0)
+            return 0;
+            
+        int nextIndex = index - 1;
+        if(nextIndex < 0)
+            return GetPreviousWeapon(weapons.Length);
+        if((weaponsUnlocked & 1 << nextIndex) != 0)
+            return nextIndex;
+        else
+            return GetPreviousWeapon(nextIndex);
+    }
+
+
+    public void UnlockWeapon(int index)
+    {
         int a = 1 << index;
         weaponsUnlocked = weaponsUnlocked | a;
 
     }
 
-    private void SetWeaponActive(int index){
+    private void SetWeaponActive(int index)
+    {
         weapons[currentWeaponIndex].GetComponent<AGun>().InterruptReloading();
         weapons[currentWeaponIndex].SetActive(false);
         currentWeaponIndex = index;

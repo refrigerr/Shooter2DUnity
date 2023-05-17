@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8988794271035365348}
   - component: {fileID: 978617665522849857}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,8 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4250338512561195}
   - component: {fileID: 1433765758168986501}
-  - component: {fileID: 9093499880816003657}
-  m_Layer: 0
+  - component: {fileID: 5060531595248205672}
+  m_Layer: 8
   m_Name: HeavyAmmoPickable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,11 +130,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200a4adc141b4ea41a97ba47ed816a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
   _ammoType: 3
   _minAmmo: 5
   _maxAmmo: 10
---- !u!58 &9093499880816003657
-CircleCollider2D:
+--- !u!61 &5060531595248205672
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,5 +150,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

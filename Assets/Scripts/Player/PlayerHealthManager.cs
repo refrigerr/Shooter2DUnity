@@ -36,7 +36,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
             }
         }   
     }
-    public int getHealth(){
+    public int GetHealth(){
         return _health;
     }
     

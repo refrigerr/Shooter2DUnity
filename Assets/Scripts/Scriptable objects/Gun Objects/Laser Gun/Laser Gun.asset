@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Laser Gun
   m_EditorClassIdentifier: 
   name: Laser Gun
-  damage: 4
-  bullet: {fileID: 3363194229335392006, guid: 232cdc65917a72045a9ab81e58dc8347, type: 3}
-  bulletSpeed: 500
-  bulletAliveInSeconds: 1
+  damage: 50
+  ammoPerShot: 1
+  projectile: {fileID: 4418494420692367583, guid: ce746a7a8889ea948ac147384db9e24c, type: 3}
+  projectileSpeed: 1000
+  projectileAliveInSeconds: 5
   ammoType: 5
-  currentAmmo: 2569
-  magSize: 100
+  currentAmmo: 1
+  magSize: 5
   fireRate: 2000
   reloadTime: 4
   reloading: 0

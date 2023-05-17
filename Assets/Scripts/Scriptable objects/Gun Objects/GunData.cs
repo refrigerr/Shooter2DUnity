@@ -9,9 +9,10 @@ public class GunData : ScriptableObject
     public new string name;
     [Header("Shooting")]
     public int damage;
-    public GameObject bullet;
-    public float bulletSpeed;
-    public float bulletAliveInSeconds;
+    public int ammoPerShot;
+    public GameObject projectile;
+    public float projectileSpeed;
+    public float projectileAliveInSeconds;
     public AmmunitionManager.AmmunitionType ammoType;
  
     [Header("Reloading")]
