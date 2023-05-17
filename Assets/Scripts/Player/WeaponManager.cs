@@ -44,7 +44,8 @@ public class WeaponManager : MonoBehaviour
 
     private void SwitchingWeapons()
     {
-        
+        if(AWindow.GameIsPaused)
+            return;
         
 
         if(Input.GetKeyDown(KeyCode.Alpha1) && currentWeaponIndex!=0 && ((weaponsUnlocked & 1) != 0)){

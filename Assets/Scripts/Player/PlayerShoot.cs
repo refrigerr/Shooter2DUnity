@@ -18,7 +18,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
-
+        if(AWindow.GameIsPaused)
+            return;
+            
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _direction = _mousePos - (Vector2) _weaponHolder.position;
         FaceMouse();

@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update(){
 
+        if(AWindow.GameIsPaused)
+            return;
+
         if(Input.GetButtonDown("Jump") && isGrounded()){
             Jump();
         }

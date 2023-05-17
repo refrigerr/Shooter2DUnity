@@ -79,21 +79,6 @@ public class ElectricGun : AGun
         }
     }
 
-
-    private void OnDrawGizmos(){
-        Gizmos.color = Color.white;
-        UnityEditor.Handles.DrawWireDisc(_muzzle.position, Vector3.forward, _radius);
-
-        Vector3 angle1 = DirectionFromAngle(-_muzzle.eulerAngles.z, -_angle/2 + 90);
-        Vector3 angle2 = DirectionFromAngle(-_muzzle.eulerAngles.z, _angle/2+ 90);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(_muzzle.position, _muzzle.position+angle1*_radius);
-        Gizmos.DrawLine(_muzzle.position, _muzzle.position+angle2*_radius);
-
-      
-    }
-
     private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees){
         angleInDegrees += eulerY;
         return new Vector2(Mathf.Sin(angleInDegrees*Mathf.Deg2Rad), Mathf.Cos(angleInDegrees*Mathf.Deg2Rad));

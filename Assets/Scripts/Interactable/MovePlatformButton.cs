@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePlatformButton : Button
+public class MovePlatformButton : AInteractable
 {
     public override void PerformAction()
     {
