@@ -104,6 +104,9 @@ MonoBehaviour:
   _damageText: {fileID: 1020794525343245414, guid: c4caa4215b7e7114884f3db7f4a0b8d5, type: 3}
   _ammoWeakTo: 
   _ammoResistantTo: 
+  _weakOrResistantImage: {fileID: 0}
+  _weak: {fileID: 0}
+  _resistant: {fileID: 0}
   _possibleEntitiesToDrop:
   - {fileID: 904208808358683271, guid: bdf3ac48c7efe544eb6f7e0e4398a903, type: 3}
   - {fileID: 3374311911523128112, guid: d31583a9dfd000e4db4eb7a2f9b5fe87, type: 3}
@@ -234,15 +237,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1834859242501769760, guid: dad0527785c4e914586b0520a72cd860, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1834859242501769760, guid: dad0527785c4e914586b0520a72cd860, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1834859242501769760, guid: dad0527785c4e914586b0520a72cd860, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1834859242501769760, guid: dad0527785c4e914586b0520a72cd860, type: 3}
       propertyPath: m_AnchoredPosition.x

@@ -82,7 +82,7 @@ public class WeaponManager : MonoBehaviour
     {
          if(currentWeapon.GetComponent<AGun>()._gunData.reloading){
             _realoadProgress.UpdateHealthBar(currentWeapon.GetComponent<AGun>()._reloadTimeProgress, currentWeapon.GetComponent<AGun>()._gunData.reloadTime);
-             _realoadProgress.GetComponent<RectTransform>().localScale = new Vector3(this.transform.localScale.x > 0 ? 1 : -1 ,1 ,1);
+            _realoadProgress.GetComponent<RectTransform>().localScale = new Vector3(this.transform.localScale.x > 0 ? 1 : -1 ,1 ,1);
          }else{
             if(_realoadProgress.gameObject.activeSelf)
                 _realoadProgress.gameObject.SetActive(false); 

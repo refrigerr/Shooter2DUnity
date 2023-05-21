@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CustomSlider : MonoBehaviour
 {
-    
-    [SerializeField] private Vector3 _offset;
     private Slider _slider;
     private Transform _target;
     
@@ -18,11 +16,7 @@ public class CustomSlider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        this.transform.rotation = Quaternion.identity;
-        this.transform.position = _target.position + _offset;
-        
-        
+        this.transform.rotation = Quaternion.identity;   
     }
     public void UpdateHealthBar(float currentValue, float maxValue){
         _slider.value = currentValue / maxValue;
