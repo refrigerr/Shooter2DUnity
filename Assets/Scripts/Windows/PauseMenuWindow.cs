@@ -10,11 +10,11 @@ public class PauseMenuWindow : AWindow
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(GameIsPaused)
+            if(GameIsPaused && pauseSource == windowUI)
             {
                 CloseWindow();
             }
-            else
+            else if(!GameIsPaused)
             {
                 OpenWindow();
             }

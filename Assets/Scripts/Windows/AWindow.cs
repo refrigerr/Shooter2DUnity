@@ -8,7 +8,7 @@ public class AWindow : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject windowUI;
     protected GameObject pauseSource = null;
-    public void OpenWindow()
+    public virtual void OpenWindow()
     {
         if(pauseSource != null)
             return;
