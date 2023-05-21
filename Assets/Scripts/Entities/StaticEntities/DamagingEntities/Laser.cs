@@ -52,6 +52,6 @@ public class Laser : Projectile
             return;
         
         IDamageable damageable = collider2D.gameObject.GetComponent<IDamageable>();
-        damageable?.takeDamage(_damage, this._ammoType);
+        damageable?.TakeDamage(_damage, this._ammoType);
     }
 }

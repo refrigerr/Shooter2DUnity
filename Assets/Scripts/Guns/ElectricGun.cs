@@ -32,7 +32,7 @@ public class ElectricGun : AGun
                     if(damageable!= null)
                     {
                         RaycastHit2D hit2D = Physics2D.Raycast(_muzzle.position, directionToTarget, distanceToTarget, ~_ignoreLayer);
-                        damageable.takeDamage(_gunData.damage, _gunData.ammoType);
+                        damageable.TakeDamage(_gunData.damage, _gunData.ammoType);
                         GameObject lightning = Instantiate(_lightning, _muzzle.position, Quaternion.identity);
                         lightning.GetComponent<LineRenderer>().SetPosition(0, Vector2.zero);
                         lightning.GetComponent<LineRenderer>().SetPosition(1, hit2D.point - (Vector2) _muzzle.position ); 

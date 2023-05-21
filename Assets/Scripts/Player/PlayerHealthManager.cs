@@ -10,7 +10,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     [SerializeField] private float _invincibilityDuration;
     [SerializeField] private UIHealthDisplay _UIhealthDisplay;
     private bool _damaged;
-    public void takeDamage(int damage, AmmunitionManager.AmmunitionType cos = AmmunitionManager.AmmunitionType.PistolAmmo){
+    public void TakeDamage(int damage, AmmunitionManager.AmmunitionType cos = AmmunitionManager.AmmunitionType.PistolAmmo){
         if(_damaged)
             return;
         _health--;

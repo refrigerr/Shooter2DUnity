@@ -23,7 +23,7 @@ public class Explosion : MonoBehaviour
             foreach(Collider2D collider2D in objectsHit){
 
                 IDamageable damageable = collider2D.gameObject.GetComponent<IDamageable>();
-                damageable?.takeDamage(Damage, AmmunitionManager.AmmunitionType.ExplosiveAmmo);
+                damageable?.TakeDamage(Damage, AmmunitionManager.AmmunitionType.ExplosiveAmmo);
 
             }
             _didDamage = true;

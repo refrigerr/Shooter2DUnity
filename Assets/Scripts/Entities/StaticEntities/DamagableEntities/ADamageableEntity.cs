@@ -31,7 +31,12 @@ public abstract class ADamageableEntity : MonoBehaviour, IDamageable
         if(_healthBar){
             _healthBar.gameObject.SetActive(false);
         }
-            
+        CreateImages();
+        
+    }
+    //creates images to display which ammo type is entity weak/resistant to
+    private void CreateImages()
+    {
         int i = 0;
 
         foreach(AmmunitionManager.AmmunitionType ammunitionType in _ammoWeakTo)
@@ -52,9 +57,10 @@ public abstract class ADamageableEntity : MonoBehaviour, IDamageable
             i++;
 
         }
+
     }
 
-    public void takeDamage(int damage, AmmunitionManager.AmmunitionType ammoType){
+    public void TakeDamage(int damage, AmmunitionManager.AmmunitionType ammoType){
         int damageToTake = damage;
         if(Array.Exists(_ammoWeakTo, x => x == ammoType))
             damageToTake*=2;
