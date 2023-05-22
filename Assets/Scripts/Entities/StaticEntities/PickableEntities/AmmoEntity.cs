@@ -11,5 +11,6 @@ public class AmmoEntity : APickable
     protected override void OnPickUp(Collider2D collider2D)
     {
         collider2D.GetComponent<AmmunitionManager>().ChangeAmmoValue((int)_ammoType, Random.Range(_minAmmo,_maxAmmo));
+        Destroy(this.gameObject);
     }
 }

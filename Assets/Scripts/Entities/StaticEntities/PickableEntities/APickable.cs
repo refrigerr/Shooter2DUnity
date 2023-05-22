@@ -30,7 +30,6 @@ public abstract class APickable : MonoBehaviour
         if(!collider2D.gameObject.CompareTag("Player"))
             return;
         OnPickUp(collider2D);
-        Destroy(this.gameObject);
     }
     protected abstract void OnPickUp(Collider2D collider2D);
 

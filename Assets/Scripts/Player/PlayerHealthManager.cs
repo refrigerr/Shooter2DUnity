@@ -13,9 +13,9 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     public void TakeDamage(int damage, AmmunitionManager.AmmunitionType cos = AmmunitionManager.AmmunitionType.PistolAmmo){
         if(_damaged)
             return;
-        _health--;
+        ChangeHealth(-1);
         _damaged = true;
-        _UIhealthDisplay.SetHealth(_health);
+        
         
     }
 
@@ -30,14 +30,20 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     {
         if(_damaged){
             _invincibilityTimer += Time.deltaTime;
-            if(_invincibilityTimer>_invincibilityDuration){
+            if(_invincibilityTimer>=_invincibilityDuration){
                 _invincibilityTimer = 0;
                 _damaged = false;
             }
         }   
     }
-    public int GetHealth(){
+    public int GetHealth()
+    {
         return _health;
+    }
+    public void ChangeHealth(int amount)
+    {
+        _health += amount;
+        _UIhealthDisplay.SetHealth(_health);
     }
     
 }

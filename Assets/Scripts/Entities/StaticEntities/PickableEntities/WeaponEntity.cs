@@ -8,6 +8,7 @@ public class WeaponEntity : APickable
     protected override void OnPickUp(Collider2D collider2D)
     {
         collider2D.GetComponent<WeaponManager>().UnlockWeapon(_index);
+        Destroy(this.gameObject);
     }
   
 }

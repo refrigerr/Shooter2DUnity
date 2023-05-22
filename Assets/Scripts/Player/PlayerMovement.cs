@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    public float speed;
     [SerializeField] private float _jumpForce;
     [SerializeField] private LayerMask _obstacleLayer;
     private Animator _animator;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        _playerRB.velocity = new Vector2(horizontalInput * _speed, _playerRB.velocity.y);
+        _playerRB.velocity = new Vector2(horizontalInput * speed, _playerRB.velocity.y);
       
         //flips player when moving left/right
         FilpPlayer();
